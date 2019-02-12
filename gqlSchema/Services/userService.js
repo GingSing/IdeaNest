@@ -1,10 +1,13 @@
-const connection = require('../db.js');
+const User = require('../../models/User');
 
 const getUsers = () => {
-    connection.query('SELECT * FROM users', (err, results, fields) => {
-        if(err) throw err;
-        console.log(results);
-    });
+    User.findAll()
+        .then(users => {
+            return users;
+        })
+        .catch(err => {
+            console.log(err);
+        });
 }
 
 module.exports={
